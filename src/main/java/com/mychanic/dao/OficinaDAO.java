@@ -74,6 +74,7 @@ public class OficinaDAO {
             statement.setInt(1, id);
             statement.execute();
             statement.close();
+            return true;
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
