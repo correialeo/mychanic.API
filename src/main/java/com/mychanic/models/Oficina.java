@@ -1,7 +1,6 @@
 package com.mychanic.models;
 
 import java.sql.Time;
-import java.util.Date;
 
 public class Oficina {
     private long id;

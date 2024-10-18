@@ -6,27 +6,28 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    Connection connection;
+    private static final String URL = "jdbc:oracle:thin:@oracle.fiap.com:1521:ORCL";
+    private static final String USER = "rm556203";
+    private static final String PASSWORD = "080505";
 
-    public ConnectionFactory(){
+    private Connection connection;
+
+    public ConnectionFactory() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@oracle.fiap.com:1521:ORCL",
-                    "rm556203", "080505");
+            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao estabelecer conexão com o banco de dados", e);
         }
     }
 
-    public Connection getConnection(){
-        try{
-            if (connection == null){
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@oracle.fiap.com:1521:ORCL",
-                        "rm556203", "080505");
+    public Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
             }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao obter conexão", e);
         }
         return connection;
     }
-
 }

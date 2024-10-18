@@ -3,12 +3,17 @@ package com.mychanic.services;
 import com.mychanic.dao.OficinaDAO;
 import com.mychanic.models.Oficina;
 import com.mychanic.models.ServiceResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class OficinaService {
 
     private OficinaDAO oficinaDAO;
 
+    @Autowired
     public OficinaService(OficinaDAO oficinaDAO) {
         this.oficinaDAO = oficinaDAO;
     }
@@ -39,7 +44,7 @@ public class OficinaService {
 
     public ServiceResponse<Boolean> delete(int id){
         try{
-            Boolean oficinaDeletada = oficinaDAO.delete(id);
+            boolean oficinaDeletada = oficinaDAO.delete(id);
             return ServiceResponse.success(oficinaDeletada, "Oficina deletada com sucesso");
         } catch (Exception e) {
             return ServiceResponse.failure("Erro interno");

@@ -1,6 +1,7 @@
 package com.mychanic.dao;
 
 import com.mychanic.models.Oficina;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +12,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+@Repository
 public class OficinaDAO {
 
     static ConnectionFactory connectionFactory = new ConnectionFactory();
 
     public static String insert(Oficina oficina){
         try{
-            PreparedStatement statement = connectionFactory.getConnection().prepareStatement("INSERT INTO (OFICINA NOME, ENDERECO, EMAIL, HORARIO_FUNC, AVALIACAO, CATEGORIA) VALUES (?,?,?,?,?,?)");
+            PreparedStatement statement = connectionFactory.getConnection().prepareStatement("INSERT INTO OFICINA (NOME, ENDERECO, EMAIL, HORARIO_FUNC, AVALIACAO, CATEGORIA) VALUES (?,?,?,?,?,?)");
             statement.setString(1, oficina.getNome());
             statement.setString(2, oficina.getEndereco());
             statement.setString(3, oficina.getEmail());
@@ -43,8 +45,8 @@ public class OficinaDAO {
                 String endereco = resultSet.getString("ENDERECO");
                 String email = resultSet.getString("EMAIL");
                 Time horarioFunc = resultSet.getTime("HORARIO_FUNC");
-                Integer aval = resultSet.getInt("AVALIACAO");
-                Integer cat = resultSet.getInt("CATEGORIA");
+                Integer aval = (Integer) resultSet.getInt("AVALIACAO");
+                Integer cat = (Integer) resultSet.getInt("CATEGORIA");
 
                 listWorkshops.add(new Oficina(nameRs,endereco, email,horarioFunc,aval, cat));
             }
@@ -68,7 +70,7 @@ public class OficinaDAO {
         }
     }
 
-    public Boolean delete(int id){
+    public boolean delete(int id){
         try{
             PreparedStatement statement = connectionFactory.getConnection().prepareStatement("DELETE FROM OFICINA WHERE ID = ?");
             statement.setInt(1, id);
@@ -96,8 +98,8 @@ public class OficinaDAO {
                 String endereco = resultSet.getString("ENDERECO");
                 String email = resultSet.getString("EMAIL");
                 Time horarioFunc = resultSet.getTime("HORARIO_FUNC");
-                int aval = resultSet.getInt("AVALIACAO");
-                int cat = resultSet.getInt("CATEGORIA");
+                Integer aval = (Integer) resultSet.getInt("AVALIACAO");
+                Integer cat = (Integer) resultSet.getInt("CATEGORIA");
 
                 listWorkshops.add(new Oficina(name, endereco, email, horarioFunc, aval, cat));
             }
