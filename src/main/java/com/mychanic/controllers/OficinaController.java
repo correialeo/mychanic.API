@@ -1,5 +1,6 @@
 package com.mychanic.controllers;
 
+import com.mychanic.dao.OficinaDAO;
 import com.mychanic.models.Oficina;
 import com.mychanic.models.ServiceResponse;
 import com.mychanic.services.OficinaService;
@@ -11,15 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/oficinas")
+@RequestMapping("/api/oficina")
 public class OficinaController {
 
-    private final OficinaService oficinaService;
-
-    @Autowired
-    public OficinaController(OficinaService oficinaService) {
-        this.oficinaService = oficinaService;
-    }
+    OficinaService oficinaService = new OficinaService();
 
     @PostMapping
     public ResponseEntity<Oficina> create (@RequestBody Oficina data){

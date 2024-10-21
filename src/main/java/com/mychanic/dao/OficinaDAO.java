@@ -23,12 +23,13 @@ public class OficinaDAO {
             statement.setString(1, oficina.getNome());
             statement.setString(2, oficina.getEndereco());
             statement.setString(3, oficina.getEmail());
-            statement.setTime(4, oficina.getHorarioFunc());
+            statement.setString(4, oficina.getHorarioFunc());
             statement.setInt(5, oficina.getAvaliacao());
             statement.setInt(6, oficina.getCategoria());
             statement.execute();
             statement.close();
         } catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
         return "Oficina criada com sucesso!";
@@ -41,16 +42,17 @@ public class OficinaDAO {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()){
-                String nameRs = resultSet.getString("NAME");
+                String nameRs = resultSet.getString("NOME");
                 String endereco = resultSet.getString("ENDERECO");
                 String email = resultSet.getString("EMAIL");
-                Time horarioFunc = resultSet.getTime("HORARIO_FUNC");
-                Integer aval = (Integer) resultSet.getInt("AVALIACAO");
-                Integer cat = (Integer) resultSet.getInt("CATEGORIA");
+                String horarioFunc = resultSet.getString("HORARIO_FUNC");
+                int aval = resultSet.getInt("AVALIACAO");
+                int cat = resultSet.getInt("CATEGORIA");
 
                 listWorkshops.add(new Oficina(nameRs,endereco, email,horarioFunc,aval, cat));
             }
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -66,6 +68,7 @@ public class OficinaDAO {
             statement.execute();
             statement.close();
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -78,6 +81,7 @@ public class OficinaDAO {
             statement.close();
             return true;
         }catch (SQLException e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
@@ -94,16 +98,17 @@ public class OficinaDAO {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                String name = resultSet.getString("NAME");
+                String name = resultSet.getString("NOME");
                 String endereco = resultSet.getString("ENDERECO");
                 String email = resultSet.getString("EMAIL");
-                Time horarioFunc = resultSet.getTime("HORARIO_FUNC");
+                String horarioFunc = resultSet.getString("HORARIO_FUNC");
                 Integer aval = (Integer) resultSet.getInt("AVALIACAO");
                 Integer cat = (Integer) resultSet.getInt("CATEGORIA");
 
                 listWorkshops.add(new Oficina(name, endereco, email, horarioFunc, aval, cat));
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
             try {

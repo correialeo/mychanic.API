@@ -11,12 +11,7 @@ import java.util.List;
 @Service
 public class OficinaService {
 
-    private OficinaDAO oficinaDAO;
-
-    @Autowired
-    public OficinaService(OficinaDAO oficinaDAO) {
-        this.oficinaDAO = oficinaDAO;
-    }
+    OficinaDAO oficinaDAO = new OficinaDAO();
 
     public ServiceResponse<Oficina> criarOficina(Oficina oficina) {
         try{

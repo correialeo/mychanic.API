@@ -7,13 +7,13 @@ public class Oficina {
     private String nome;
     private String endereco;
     private String email;
-    private Time horarioFunc;
+    private String horarioFunc;
     private Integer avaliacao;
     private Integer categoria;
 
     public Oficina(){}
 
-    public Oficina(long id, String nome, String endereco, String email, Time horarioFunc, Integer avaliacao, Integer categoria) {
+    public Oficina(long id, String nome, String endereco, String email, String horarioFunc, Integer avaliacao, Integer categoria) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -23,7 +23,7 @@ public class Oficina {
         this.categoria = categoria;
     }
 
-    public Oficina(String nome, String endereco, String email, Time horarioFunc, Integer avaliacao, Integer categoria) {
+    public Oficina(String nome, String endereco, String email, String horarioFunc, Integer avaliacao, Integer categoria) {
         this.nome = nome;
         this.endereco = endereco;
         this.email = email;
@@ -72,11 +72,11 @@ public class Oficina {
         this.email = email;
     }
 
-    public Time getHorarioFunc() {
+    public String getHorarioFunc() {
         return horarioFunc;
     }
 
-    public void setHorarioFunc(Time horarioFunc) {
+    public void setHorarioFunc(String horarioFunc) {
         this.horarioFunc = horarioFunc;
     }
 
