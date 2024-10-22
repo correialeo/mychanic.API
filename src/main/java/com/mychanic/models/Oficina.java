@@ -3,7 +3,7 @@ package com.mychanic.models;
 import java.sql.Time;
 
 public class Oficina {
-    private long id;
+    private int id;
     private String nome;
     private String endereco;
     private String email;
@@ -13,7 +13,7 @@ public class Oficina {
 
     public Oficina(){}
 
-    public Oficina(long id, String nome, String endereco, String email, String horarioFunc, Integer avaliacao, Integer categoria) {
+    public Oficina(int id, String nome, String endereco, String email, String horarioFunc, Integer avaliacao, Integer categoria) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -48,11 +48,11 @@ public class Oficina {
         this.nome = nome;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

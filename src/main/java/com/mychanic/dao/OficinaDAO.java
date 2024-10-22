@@ -19,13 +19,14 @@ public class OficinaDAO {
 
     public static String insert(Oficina oficina){
         try{
-            PreparedStatement statement = connectionFactory.getConnection().prepareStatement("INSERT INTO OFICINA (NOME, ENDERECO, EMAIL, HORARIO_FUNC, AVALIACAO, CATEGORIA) VALUES (?,?,?,?,?,?)");
-            statement.setString(1, oficina.getNome());
-            statement.setString(2, oficina.getEndereco());
-            statement.setString(3, oficina.getEmail());
-            statement.setString(4, oficina.getHorarioFunc());
-            statement.setInt(5, oficina.getAvaliacao());
-            statement.setInt(6, oficina.getCategoria());
+            PreparedStatement statement = connectionFactory.getConnection().prepareStatement("INSERT INTO OFICINA (ID, NOME, ENDERECO, EMAIL, HORARIO_FUNC, AVALIACAO, CATEGORIA) VALUES (?,?,?,?,?,?,?)");
+            statement.setInt(1, oficina.getId());
+            statement.setString(2, oficina.getNome());
+            statement.setString(3, oficina.getEndereco());
+            statement.setString(4, oficina.getEmail());
+            statement.setString(5, oficina.getHorarioFunc());
+            statement.setInt(6, oficina.getAvaliacao());
+            statement.setInt(7, oficina.getCategoria());
             statement.execute();
             statement.close();
         } catch (SQLException e){
