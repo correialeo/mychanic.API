@@ -80,4 +80,18 @@ public class OficinaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Oficina> update (@PathVariable int id, @RequestBody Oficina updatedObj){
+        try{
+            ServiceResponse<Oficina> response = oficinaService.update(id, updatedObj);
+            if (response.isSuccess()){
+                return ResponseEntity.status(HttpStatus.OK).body(response.getData());
+            } else{
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            }
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

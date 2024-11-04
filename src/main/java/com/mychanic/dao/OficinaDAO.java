@@ -61,12 +61,31 @@ public class OficinaDAO {
         return listWorkshops;
     }
 
-    public void update(Time horarioNovo, String nome){
+    public void update(int id, Oficina oficina) {
         try {
-            PreparedStatement statement = connectionFactory.getConnection().prepareStatement("UPDATE OFICINA SET HORARIO_FUNC = ? WHERE NOME = ?");
-            statement.setTime(1, horarioNovo);
-            statement.setString(2,nome);
-            statement.execute();
+            String sql = "UPDATE OFICINA SET NOME = ?, ENDERECO = ?, EMAIL = ?, HORARIO_FUNC = ?, AVALIACAO = ?, CATEGORIA = ? WHERE ID = ?";
+            PreparedStatement statement = connectionFactory.getConnection().prepareStatement(sql);
+
+            statement.setString(1, oficina.getNome());
+            statement.setString(2, oficina.getEndereco());
+            statement.setString(3, oficina.getEmail());
+            statement.setString(4, oficina.getHorarioFunc());
+
+            if (oficina.getAvaliacao() != null) {
+                statement.setInt(5, oficina.getAvaliacao());
+            } else {
+                statement.setNull(5, java.sql.Types.INTEGER);
+            }
+
+            if (oficina.getCategoria() != null) {
+                statement.setInt(6, oficina.getCategoria());
+            } else {
+                statement.setNull(6, java.sql.Types.INTEGER);
+            }
+
+            statement.setInt(7, id);
+
+            statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();

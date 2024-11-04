@@ -45,6 +45,15 @@ public class OficinaService {
             return ServiceResponse.failure("Erro interno");
         }
     }
+
+    public ServiceResponse<Oficina> update(int id, Oficina updatedObj){
+        try{
+            oficinaDAO.update(id, updatedObj);
+            return ServiceResponse.success(updatedObj, "Oficina alterada com sucesso");
+        } catch (Exception e) {
+            return ServiceResponse.failure("Erro interno");
+        }
+    }
 }
 
 
