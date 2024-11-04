@@ -50,7 +50,7 @@ public class OficinaController {
         }
     }
 
-    @GetMapping("/categoria")
+    @GetMapping("/{cat}")
     public ResponseEntity<List<Oficina>> getByCat (@RequestParam int cat){
         try{
             ServiceResponse<List<Oficina>> response = oficinaService.getByCat(cat);
